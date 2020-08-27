@@ -1,6 +1,6 @@
 // This class will be used for the GUI of the program
-import javax.swing.JFrame;
-import java.awt.Container;
+import javax.swing.*;
+import java.awt.*;
 
 class gui
 {
@@ -17,15 +17,23 @@ class gui
     JMenu menu2 = new JMenu("Help");
     menuBar.add(menu1);
     menuBar.add(menu2);
-    JMenuItem m11 = new JMenuItem("Open");
-    JMenuItem m22 = new JMenuItem("Save as");
-    menu1.add(m11);
-    menu1.add(m22);
+    JMenuItem menu11 = new JMenuItem("Open");
+    JMenuItem menu22 = new JMenuItem("Save as");
+    menu1.add(menu11);
+    menu1.add(menu22);
     
-    JButton button = new JButton("Press");
+    //Text to show what text will be translated
+    JTextArea textArea = new JTextArea();
     
-    frame.getContentPane().add(button); // Adds Button to content pane of frame
+    //Button for translating the java file to python
+    JPanel panel = new JPanel();
+    JButton button = new JButton("Translate");
+    panel.add(button);
     
+    //Addes components to the frame and shows the program
+    frame.getContentPane().add(BorderLayout.SOUTH, panel);
+    frame.getContentsPane().add(BoarderLayout.NORTH, menuBar);
+    frame.getContentsPane().add(BoarderLayout.CENTER, textArea);
     frame.setVisible(true);
   }
 }
