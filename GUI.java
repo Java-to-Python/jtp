@@ -1,15 +1,17 @@
 // This class will be used for the GUI of the program
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;  
 
-class gui
-{
-  public static void main(String args[])
-  {
+
+class gui {    
+
+  public static void main(String args[]){
+  
     //Creating the Frame
-    JFrame frame = new JFrame("Java to Python trranslator");
+    JFrame frame = new JFrame("Java to Python Translator");
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setSize(300,300);
+    frame.setSize(800,800);
     
     //Creating the MenuBar and adding components
     JMenuBar menuBar = new JMenuBar();
@@ -21,19 +23,66 @@ class gui
     JMenuItem menu22 = new JMenuItem("Save as");
     menu1.add(menu11);
     menu1.add(menu22);
+    frame.setJMenuBar(menuBar);   
+ 
+    //Creating Buttons & TextAreas
+    JButton translatorButton = new JButton("Translate");       
+    JButton runButton = new JButton("Run");  
+    JTextArea textArea = new JTextArea("public class MyClass{ 				"
+      	  +"\n\tpublic static void main (String[] args){"
+      	  +"\n\t\tSystem.out.println(\"Hello World\");\n\t}\n }",15,40);
+    JTextArea textArea2 = new JTextArea("print('Hello');",15,40);  
+    JScrollPane textScrollPane = new JScrollPane(textArea);
+    JScrollPane textScrollPane2 = new JScrollPane(textArea2);      
+ 
+    //Creating Panels to hold components
+    JPanel panel = new JPanel(new BorderLayout());
+    panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK), "Java"));
+    JPanel panel3 = new JPanel(new BorderLayout());
+    panel3.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK), "Python")); 
+    JPanel panel2 = new JPanel();
+     
+    //Adds Components to panel
+    panel.add(textScrollPane,BorderLayout.CENTER);
+    panel.add(panel2,BorderLayout.SOUTH);
+    panel2.add(translatorButton);
+    panel2.add(runButton);      
+    panel3.add(textScrollPane2);   
     
-    //Text to show what text will be translated
-    JTextArea textArea = new JTextArea();
-    
-    //Button for translating the java file to python
-    JPanel panel = new JPanel();
-    JButton button = new JButton("Translate");
-    panel.add(button);
-    
-    //Addes components to the frame and shows the program
-    frame.getContentPane().add(BorderLayout.SOUTH, panel);
-    frame.getContentsPane().add(BoarderLayout.NORTH, menuBar);
-    frame.getContentsPane().add(BoarderLayout.CENTER, textArea);
+    //Adds ActionListioners
+    runButton.addActionListener(new ActionListener(){  
+       public void actionPerformed(ActionEvent e){  
+               textArea2.setText("Running...");  
+       }  
+    });  
+    translatorButton.addActionListener(new ActionListener(){  
+       public void actionPerformed(ActionEvent e){  
+               textArea2.setText("Translated..");  
+       }  
+    });  
+    menu11.addActionListener(new ActionListener(){  
+       public void actionPerformed(ActionEvent e){  
+               textArea.setText("Retrieving...");  
+       }  
+    }); 
+    menu22.addActionListener(new ActionListener(){  
+       public void actionPerformed(ActionEvent e){  
+               textArea.setText("Saving...");  
+       }  
+    }); 
+ 
+    //Adds panels to the frame and shows the program
+    frame.setLayout(new GridBagLayout());
+    GridBagConstraints c = new GridBagConstraints();
+    c.fill = GridBagConstraints.BOTH;
+    c.weightx=1;
+    c.gridy=0;
+    c.weighty=0.3;
+    frame.add(panel,c);
+    c.gridy=1;
+    c.weighty=0.1;
+    frame.add(panel3,c);
     frame.setVisible(true);
   }
+ 
 }
