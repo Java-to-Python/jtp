@@ -1,12 +1,14 @@
 // This class will be used for the GUI of the program
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;  
+import java.awt.event.*; 
+import java.net.*; 
 
 
 class gui {    
 
   public static void main(String args[]){
+    
   
     //Creating the Frame
     JFrame frame = new JFrame("Java to Python Translator");
@@ -21,8 +23,10 @@ class gui {
     menuBar.add(menu2);
     JMenuItem menu11 = new JMenuItem("Open");
     JMenuItem menu22 = new JMenuItem("Save as");
+    JMenuItem menu33 = new JMenuItem("Github");
     menu1.add(menu11);
     menu1.add(menu22);
+    menu2.add(menu33);
     frame.setJMenuBar(menuBar);   
  
     //Creating Buttons & TextAreas
@@ -49,7 +53,7 @@ class gui {
     panel2.add(runButton);      
     panel3.add(textScrollPane2);   
     
-    //Adds ActionListioners
+    //Adds ActionListioners *button functions*
     runButton.addActionListener(new ActionListener(){  
        public void actionPerformed(ActionEvent e){  
                textArea2.setText("Running...");  
@@ -70,6 +74,18 @@ class gui {
                textArea.setText("Saving...");  
        }  
     }); 
+    menu33.addActionListener(new ActionListener(){  
+       public void actionPerformed(ActionEvent e){
+        
+           try{
+             URI uri = new URI("https://github.com/Java-to-Python/jtp");  
+            
+            Desktop desktop = Desktop.getDesktop();
+            desktop.browse(uri);
+          } catch (Exception evt){}  
+       }
+    }); 
+     
  
     //Adds panels to the frame and shows the program
     frame.setLayout(new GridBagLayout());
