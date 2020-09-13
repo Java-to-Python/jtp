@@ -3,6 +3,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*; 
 import java.net.*; 
+import javax.swing.filechooser.*; 
+import java.io.*;
 
 
 class gui {    
@@ -54,6 +56,8 @@ class gui {
     panel3.add(textScrollPane2);   
     
     //Adds ActionListioners *button functions*
+    
+    //Translate Button Function
     runButton.addActionListener(new ActionListener(){  
        public void actionPerformed(ActionEvent e){  
                textArea2.setText("Running...");  
@@ -63,17 +67,36 @@ class gui {
        public void actionPerformed(ActionEvent e){  
                textArea2.setText("Translated..");  
        }  
-    });  
+    });
+      
+    //File Opener
     menu11.addActionListener(new ActionListener(){  
        public void actionPerformed(ActionEvent e){  
-               textArea.setText("Retrieving...");  
+         JFileChooser jC = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory()); 
+         int returnVal = jC.showOpenDialog(frame);
+         if (returnVal == JFileChooser.APPROVE_OPTION) {
+           File file = jC.getSelectedFile();
+           try {
+             BufferedReader input = new BufferedReader(new InputStreamReader(
+                 new FileInputStream(file)));
+             textArea.read(input, "READING FILE :-)");
+           } catch (Exception x) {
+             x.printStackTrace();
+           }
+          } else {
+            textArea.setText("Operation is CANCELLED :(");
+          }
        }  
     }); 
+    
+    //File Save As
     menu22.addActionListener(new ActionListener(){  
        public void actionPerformed(ActionEvent e){  
                textArea.setText("Saving...");  
        }  
     }); 
+    
+    //Help ... Github Page
     menu33.addActionListener(new ActionListener(){  
        public void actionPerformed(ActionEvent e){
         
