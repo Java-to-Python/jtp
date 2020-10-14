@@ -5,24 +5,8 @@ import java.io.IOException;
 
 public class Java_Parser
 {
-  public static void file_reader(String file)
+  public static void parser(String file)
   {
-    BufferedReader reader;
-    try {
-      reader = new BufferedReader( new FileReader( file));
-      String line = reader.readLine();
-      while (line != null)
-      {
-        //translates code and writes code to file
-        
-        line = reader.readLine();
-        
-      }
-      reader.close();
-    }
-    catch (IOException e)
-    {
-      e.printStackTrace();
-    }
+  
   }
 }
