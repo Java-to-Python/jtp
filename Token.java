@@ -2,13 +2,26 @@ public class Token{
 		tokentype type;
 		int position;
 		String text;
-		int value;
+		float value;
 
 		public Token(tokentype type, int position, String text, int value){
 			this.type=type;
 			this.position=position;
 			this.text=text;
 			this.value=value;
+		}
+		
+		public Token(tokentype type, int position, String text, float value){
+			this.type=type;
+			this.position=position;
+			this.text=text;
+			this.value=value;
+		}
+		public Token(tokentype type, int position, String text){
+			this.type=type;
+			this.position=position;
+			this.text=text;
+			
 		}
 		
 		public Token() {

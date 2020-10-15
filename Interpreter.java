@@ -2,10 +2,21 @@ import java.util.ArrayList;
 
 public class Interpreter {
 
-	public static String Translate(ArrayList<Token> tokens) {
+	public static ArrayList Translate(ArrayList<Token> tokens) {
 		
-		String output="";
+		ArrayList<Token>parsedTokens = new ArrayList<Token>();
+		//read tokens in ArrayList 
+		for(Token i: tokens){
+			if(i.getText()=="class") {
+				//while() {
+					
+				}
+			}
+			
+		//}
 		
-		return output;		
+		//return parsedTokens;
+		return tokens;
 	}
 }
+//

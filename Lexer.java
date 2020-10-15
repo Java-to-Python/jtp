@@ -7,7 +7,13 @@ public class Lexer{
 		
 		//Lexer object
 		public Lexer(String text) {
-			lexerL=text;
+			lexerL=text.replace("public ", "");
+			lexerL=lexerL.replace("private ", "");
+			lexerL=lexerL.replace("static ", "");
+			lexerL=lexerL.replace("void ", "");
+			lexerL=lexerL.replace("static ", "");
+			lexerL=lexerL.replace(";", "");
+			
 			position=0;
 		}		
 		
@@ -25,6 +31,14 @@ public class Lexer{
 			
 			position++;
 		}		
+		
+		char peek() {
+			return lexerL.charAt(position++);
+		}
+		
+		char peekBack() {
+			return lexerL.charAt(position--);
+		}
 		
 		public Token nextToken() {
 			
@@ -51,10 +65,13 @@ public class Lexer{
 			if(Character.isLetter(getCurrent())){
 				
 				//iterate through the whole number
-				while(Character.isLetter(getCurrent())){
+				while(Character.isLetter(getCurrent())||getCurrent()=='.' ){
 					next();}
 				
 				String identity = lexerL.substring(start, position);
+				
+				//Checks for methods
+				
 				//check for keywords
 				if(keywords.compare(identity)) {
 					return new Token(tokentype.Keyword, start, identity, 0);
@@ -63,15 +80,15 @@ public class Lexer{
 			}
 			
 			//Checks for numbers
-			if(Character.isDigit(getCurrent())){
+			if(Character.isDigit(getCurrent())||(getCurrent()=='.'&& Character.isDigit(peek()))||(getCurrent()=='.'&& Character.isDigit(peekBack()))){
 				
 				//iterate through the whole number
-				while(Character.isDigit(getCurrent())){
+				while(Character.isDigit(getCurrent())||getCurrent()=='.'){
 					next();}
 				
 				String identity = lexerL.substring(start, position);
-				int value = Integer.parseInt(identity);
-				return new Token(tokentype.Number, start, identity, value);
+				//int value = Integer.parseInt(identity);
+				return new Token(tokentype.Number, start, identity);
 			}
 			
 			//Checks for spaces
@@ -81,8 +98,9 @@ public class Lexer{
 				while(Character.isWhitespace(getCurrent())) {next();}
 
 				String whiteSpace = lexerL.substring(start, position);	
+				
+				//if(whiteSpace.contains("\t")||whiteSpace.length()>2) {return new Token(tokentype.Indent, start, "\t", 0);}
 				if(whiteSpace.contains("\n")) {return new Token(tokentype.NewLine, start, "\n", 0);}
-				if(whiteSpace.contains("\t")) {return new Token(tokentype.Tab, start, "\t", 0);}
 				return new Token(tokentype.Space, start, whiteSpace, 0);
 			}
 			
