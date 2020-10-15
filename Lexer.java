@@ -80,7 +80,7 @@ public class Lexer{
 			}
 			
 			//Checks for numbers
-			if(Character.isDigit(getCurrent())||(getCurrent()=='.'&& Character.isDigit(peek()))||(getCurrent()=='.'&& Character.isDigit(peekBack()))){
+			if(Character.isDigit(getCurrent()) || (((getCurrent() == '.')) && (Character.isDigit(peek()) || Character.isDigit(peekBack())))){
 				
 				//iterate through the whole number
 				while(Character.isDigit(getCurrent())||getCurrent()=='.'){
