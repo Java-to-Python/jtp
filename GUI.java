@@ -9,7 +9,7 @@ import java.io.*;
 
 class gui {    
 
-  public static void main(String args[]){
+  public gui(){
     
   
     //Creating the Frame
@@ -31,9 +31,9 @@ class gui {
     menu2.add(menu33);
     frame.setJMenuBar(menuBar);   
  
-    //Creating Buttons & TextAreas
+//    //Creating Buttons & TextAreas
     JButton translatorButton = new JButton("Translate");       
-    JButton runButton = new JButton("Run");  
+//    JButton runButton = new JButton("Run");  
     JTextArea textArea = new JTextArea("public class MyClass{ 				"
       	  +"\n\tpublic static void main (String[] args){"
       	  +"\n\t\tSystem.out.println(\"Hello World\");\n\t}\n }",15,40);
@@ -52,20 +52,20 @@ class gui {
     panel.add(textScrollPane,BorderLayout.CENTER);
     panel.add(panel2,BorderLayout.SOUTH);
     panel2.add(translatorButton);
-    panel2.add(runButton);      
+    //panel2.add(runButton);      
     panel3.add(textScrollPane2);   
     
     //Adds ActionListioners *button functions*
     
     //Translate Button Function
-    runButton.addActionListener(new ActionListener(){  
-       public void actionPerformed(ActionEvent e){  
-               textArea2.setText("Running...");  
-       }  
-    });  
+//    runButton.addActionListener(new ActionListener(){  
+//       public void actionPerformed(ActionEvent e){  
+//               textArea2.setText("Running...");  
+//       }  
+//    });  
     translatorButton.addActionListener(new ActionListener(){  
        public void actionPerformed(ActionEvent e){  
-               textArea2.setText("Translated..");  
+    	   textArea2.setText(Writing_class.writer(textArea.getText())); 
        }  
     });
       
@@ -102,7 +102,6 @@ class gui {
         
            try{
              URI uri = new URI("https://github.com/Java-to-Python/jtp");  
-            
             Desktop desktop = Desktop.getDesktop();
             desktop.browse(uri);
           } catch (Exception evt){}  
