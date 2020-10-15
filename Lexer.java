@@ -13,6 +13,7 @@ public class Lexer{
 			lexerL=lexerL.replace("void ", "");
 			lexerL=lexerL.replace("static ", "");
 			lexerL=lexerL.replace(";", "");
+			lexerL=lexerL.replace("{", "");
 			
 			position=0;
 		}		
