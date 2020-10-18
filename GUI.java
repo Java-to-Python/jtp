@@ -34,10 +34,14 @@ class gui {
 //    //Creating Buttons & TextAreas
     JButton translatorButton = new JButton("Translate");       
 //    JButton runButton = new JButton("Run");  
-    JTextArea textArea = new JTextArea("public class MyClass{ 				"
-      	  +"\n\tpublic static void main (String[] args){"
-      	  +"\n\t\tSystem.out.println(\"Hello World\");\n\t}\n }",15,40);
-    JTextArea textArea2 = new JTextArea("print('Hello');",15,40);  
+    JTextArea textArea = new JTextArea("public class MyClass{ 				\r\n" + 
+    		"	public static void main (String[] args){\r\n" + 
+    		"		int x = 5;\r\n" + 
+    		"		String hi = \"Hello World\";\r\n" + 
+    		"	\r\n" + 
+    		"	}\r\n" + 
+    		" }",15,40);
+    JTextArea textArea2 = new JTextArea(" ",15,40);  
     JScrollPane textScrollPane = new JScrollPane(textArea);
     JScrollPane textScrollPane2 = new JScrollPane(textArea2);      
  
