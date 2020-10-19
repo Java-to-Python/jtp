@@ -3,7 +3,6 @@ import java.util.ArrayList;
 
 public class Interpreter {
 
-
     public static boolean W = false;
     public static boolean I = false;
     public static boolean F = false;
@@ -15,7 +14,7 @@ public class Interpreter {
         while (position < tokens.size()) {
             position++;
             ArrayList<String> parsedTokens = new ArrayList<>();
-            if (!W || !I || !F) {
+            if (!W && !I && !F) {
                 for (int j = 0; j < indent; j++) {
                     parsedTokens.add("\t");
                 }
@@ -66,14 +65,13 @@ public class Interpreter {
                             I = true;
 
                             parsedTokens.add("if ");
-                            
+
                             translate.add(parsedTokens);
-                            
+
                             while (!tokens.get(position).getText().equals(")")) {
                                 Translate(tokens);
                             }
-                            parsedTokens.add(" :");
-                            translate.add(parsedTokens);
+
                             I = false;
                             break;
                         }
@@ -81,12 +79,12 @@ public class Interpreter {
                         case "while": {
                             W = true;
                             parsedTokens.add("while (");
-
+                            translate.add(parsedTokens);
+                            
                             while (!tokens.get(position).getText().equals(")")) {
                                 Translate(tokens);
                             }
-                            parsedTokens.add("):");
-                            translate.add(parsedTokens);
+                            
                             W = false;
                             break;
                         }
@@ -180,6 +178,19 @@ public class Interpreter {
                     break;
                 }
                 case CloseP: {
+                    if (W) {
+                    parsedTokens.add(" ):");
+                    translate.add(parsedTokens);
+                    }
+                    else if (I) {
+                    parsedTokens.add(" :");
+                    translate.add(parsedTokens);
+                    }
+                    else if (F) {
+                    parsedTokens.add(" :");
+                    translate.add(parsedTokens);    
+                    }
+
                     return translate;
                 }
                 case CloseB: {
