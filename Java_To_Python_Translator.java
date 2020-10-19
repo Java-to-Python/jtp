@@ -36,4 +36,3 @@ public class Java_To_Python_Translator {
         return output;
     }
 }
-//

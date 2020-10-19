@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class Interpreter {
 
+
     public static boolean W = false;
     public static boolean I = false;
     public static boolean F = false;
@@ -218,4 +219,3 @@ public class Interpreter {
         return translate;
     }
 }
-//

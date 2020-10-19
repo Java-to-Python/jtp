@@ -1,4 +1,3 @@
-
 public enum keywords {
     ABSTRACT, ASSERT, BOOLEAN, BREAK, BYTE, CASE,
     CATCH, CHAR, CLASS, CONST, CONTINUE, DEFAULT,

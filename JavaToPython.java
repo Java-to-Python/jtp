@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 
 public class JavaToPython {
@@ -8,5 +7,3 @@ public class JavaToPython {
 
     }
 }
-
-//

@@ -147,5 +147,4 @@ public class Lexer {
                 return new Token(tokentype.Unknown, position++, lexerL.substring(start, position));
         }
     }
-
 }

@@ -1,4 +1,3 @@
-
 public enum tokentype {
     Number, Space, Addition, Unknown, Subtraction,
     Multiplication, Division, OpenB, OpenP, CloseP, CloseB, End,

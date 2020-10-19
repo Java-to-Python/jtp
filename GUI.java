@@ -120,5 +120,4 @@ class gui {
         frame.add(panel3, c);
         frame.setVisible(true);
     }
-
 }
