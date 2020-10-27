@@ -5,6 +5,7 @@ import java.awt.event.*;
 import java.net.*; 
 import javax.swing.filechooser.*; 
 import java.io.*;
+import java.io.FileWriter;
 
 
 class gui {    
@@ -96,7 +97,29 @@ class gui {
     //File Save As
     menu22.addActionListener(new ActionListener(){  
        public void actionPerformed(ActionEvent e){  
-               textArea.setText("Saving...");  
+    	   JFileChooser jC = new  JFileChooser();
+    	   int returnVal = jC.showSaveDialog(frame);
+           if (returnVal == JFileChooser.APPROVE_OPTION) {
+             File file = jC.getSelectedFile();
+             try {
+				if(file.createNewFile()) {
+					System.out.println(file.getName());
+				 } else {
+					 System.out.println("Failed to create");
+				 }
+             } catch (IOException e1) {
+				// TODO Auto-generated catch block
+				System.out.println("Error:");
+				e1.printStackTrace();
+             }
+             try {
+            	FileWriter fW = new FileWriter(file);
+				fW.write(textArea2.getText());
+				fW.close();
+             }catch (IOException z) {
+            	 System.out.println("Failed to Write");
+             }
+           }
        }  
     }); 
     
