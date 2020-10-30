@@ -2,14 +2,9 @@ import java.util.ArrayList;
 
 public class Interpreter {
 
-<<<<<<< HEAD
 	public static ArrayList<ArrayList<String>> Translate(ArrayList<Token> tokens) 
         {
 		@SuppressWarnings("unused")
-=======
-	public static ArrayList Translate(ArrayList<Token> tokens) 
-        {
->>>>>>> parent of f011306... Merge remote-tracking branch 'upstream/master'
 		String x = "";
                 int indent = -1;
                 
