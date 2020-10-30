@@ -3,14 +3,9 @@ import java.util.ArrayList;
 public class Interpreter {
 
 <<<<<<< HEAD
-<<<<<<< HEAD
 	public static ArrayList<ArrayList<String>> Translate(ArrayList<Token> tokens) 
         {
 		@SuppressWarnings("unused")
-=======
-	public static ArrayList Translate(ArrayList<Token> tokens) 
-        {
->>>>>>> parent of f011306... Merge remote-tracking branch 'upstream/master'
 =======
 	public static ArrayList Translate(ArrayList<Token> tokens) 
         {
