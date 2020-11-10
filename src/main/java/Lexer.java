@@ -45,8 +45,8 @@ public class Lexer {
 
         int start = position;
 
-        if (position >= lexerL.length()) {
-            return new Token(tokentype.End, position, "\u0000");
+        if (position == lexerL.lastIndexOf("}")) {
+            return new Token(tokentype.End, position, "}");
         }
 
         //Checks for Strings
@@ -60,13 +60,13 @@ public class Lexer {
 
             String identity = lexerL.substring(start, position);
 
-            return new Token(tokentype.String, start, identity);
+            return new Token(tokentype.String, start, identity.replace("\"", "\'"));
         }
-
+        
         //Checks for words
         if (Character.isLetter(getCurrent())) {
 
-            //iterate through the whole number
+            //iterate through the whole word
             while (Character.isLetter(getCurrent())) {
                 next();
             }
@@ -118,13 +118,24 @@ public class Lexer {
             case '+':
                 return new Token(tokentype.Addition, position++, "+");
             case '-':
-                return new Token(tokentype.Subtraction, position++, "-");
+                return new Token(tokentype.Subtract, position++, "-");
             case '*':
                 return new Token(tokentype.Multiplication, position++, "*");
             case '.':
                 return new Token(tokentype.Dot, position++, ".");
-            case '/':
-                return new Token(tokentype.Division, position++, "/");
+            case '/':{
+            	position++;
+                if(lexerL.charAt(position)=='/') {
+                	 do {
+                         next();
+                     } while (getCurrent() != '\n');
+                     next();
+                     String identity = lexerL.substring(start, position);
+
+                     return new Token(tokentype.Comment, start, identity.replace("//","#"));
+                }
+            	return new Token(tokentype.Division, position++, "/");
+            }
             case '(':
                 return new Token(tokentype.OpenP, position++, "(");
             case ')':
@@ -137,14 +148,17 @@ public class Lexer {
                 return new Token(tokentype.OpenB, position++, "[");
             case ']':
                 return new Token(tokentype.CloseB, position++, "]");
+            case ':':
+                return new Token(tokentype.Colon, position++, ":");
             case ';':
                 return new Token(tokentype.SemiColon, position++, ";");
             case '<':
-                return new Token(tokentype.LessThen, position++, "<");
+                return new Token(tokentype.LessThan, position++, "<");
             case '>':
-                return new Token(tokentype.GreaterThen, position++, ">");
+                return new Token(tokentype.GreaterThan, position++, ">");
             default:
                 return new Token(tokentype.Unknown, position++, lexerL.substring(start, position));
         }
     }
+
 }
