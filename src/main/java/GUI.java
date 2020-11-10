@@ -41,7 +41,7 @@ class gui {
         JFrame frame = new JFrame("Java to Python Translator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 800);
-        
+
         try
         {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -54,13 +54,24 @@ class gui {
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(gui.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         //Creating the MenuBar and adding components
         JMenuBar menuBar = new JMenuBar();
         JMenu menu1 = new JMenu("FILE");
         JMenu menu2 = new JMenu("Help");
+        JMenu menu3 = new JMenu("Example");
         menuBar.add(menu1);
         menuBar.add(menu2);
+        menuBar.add(menu3);
+
+        JMenuItem menu4 = new JMenuItem("String");
+        JMenuItem menu5 = new JMenuItem("For loop");
+        JMenuItem menu6 = new JMenuItem("If");
+
+        menu3.add(menu4);
+        menu3.add(menu5);
+        menu3.add(menu6);
+
         JMenuItem menu11 = new JMenuItem("Open");
         JMenuItem menu22 = new JMenuItem("Save as");
         JMenuItem menu33 = new JMenuItem("Github");
@@ -71,19 +82,19 @@ class gui {
 
         //Creating Buttons & TextAreas
         JButton translatorButton = new JButton("Translate");
-        
-        //JButton runButton = new JButton("Run");  
-        JTextArea textArea = new JTextArea("public class MyClass{ 				\r\n" + 
-        		"	public static void main (String[] args){\r\n" + 
-        		"		System.out.println(\"Hello World\");\r\n" + 
-        		"		int x=5;\r\n" + 
-        		"		String hi=\"Idk\";\r\n" + 
-        		"		while(x>0){\r\n" + 
-        		"			System.out.println(hi);\r\n" + 
-        		"			x--;\r\n" + 
-        		"		}\r\n" + 
-        		"	}\r\n" + 
-        		" }\r\n" + 
+
+        //JButton runButton = new JButton("Run");
+        JTextArea textArea = new JTextArea("public class MyClass{ 				\r\n" +
+        		"	public static void main (String[] args){\r\n" +
+        		"		System.out.println(\"Hello World\");\r\n" +
+        		"		int x=5;\r\n" +
+        		"		String hi=\"Idk\";\r\n" +
+        		"		while(x>0){\r\n" +
+        		"			System.out.println(hi);\r\n" +
+        		"			x--;\r\n" +
+        		"		}\r\n" +
+        		"	}\r\n" +
+        		" }\r\n" +
         		"", 15, 40);
         JTextArea textArea2 = new JTextArea("", 15, 40);
         JScrollPane textScrollPane = new JScrollPane(textArea);
@@ -100,7 +111,7 @@ class gui {
         panel.add(textScrollPane, BorderLayout.CENTER);
         panel.add(panel2, BorderLayout.SOUTH);
         panel2.add(translatorButton);
-        //panel2.add(runButton);      
+        //panel2.add(runButton);
         panel3.add(textScrollPane2);
 
         //Translate Button Function
@@ -116,7 +127,7 @@ class gui {
         //File Opener
         menu11.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            
+
                 JFileChooser jC = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
                 FileNameExtensionFilter filter = new FileNameExtensionFilter("Java","java");
             	jC.addChoosableFileFilter(filter);
@@ -147,14 +158,14 @@ class gui {
           	   	int returnVal = jC.showSaveDialog(frame);
           	   	if (returnVal == JFileChooser.APPROVE_OPTION) {
                    File file = jC.getSelectedFile();
-                   
+
                    //Change to .py file
-                   if(!file.getName().contains(".py")) { 
-                	   File renamedFile = new File(file.getName() + ".py"); 
+                   if(!file.getName().contains(".py")) {
+                	   File renamedFile = new File(file.getName() + ".py");
                 	   file.renameTo(renamedFile);
                 	   renamedFile.delete();
             	   }
-                   
+
                    try {
       				if(file.createNewFile()) {
       					System.out.println( "Created new file:" + file.getName());
@@ -189,6 +200,65 @@ class gui {
                 }
             }
         });
+
+        menu4.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                try {
+                    textArea.setText("public class MyClass{ 				\r\n" +
+        		"	public static void main (String[] args){\r\n" +
+        		"		String hi=\"Idk\";\r\n" +
+        		"		}\r\n" +
+        		"	}\r\n" +
+        		" }\r\n" +
+        		"");
+                } catch (Exception evt) {
+                }
+            }
+        });
+
+        menu5.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                try {
+                    JTextArea textArea = new JTextArea("public class MyClass{ 				\r\n" +
+        		"	public static void main (String[] args){\r\n" +
+        		"		System.out.println(\"Hello World\");\r\n" +
+        		"		int x=5;\r\n" +
+        		"		String hi=\"Idk\";\r\n" +
+        		"		while(x>0){\r\n" +
+        		"			System.out.println(hi);\r\n" +
+        		"			x--;\r\n" +
+        		"		}\r\n" +
+        		"	}\r\n" +
+        		" }\r\n" +
+        		"", 15, 40);
+                } catch (Exception evt) {
+                }
+            }
+        });
+
+        menu6.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                try {
+                    JTextArea textArea = new JTextArea("public class MyClass{ 				\r\n" +
+        		"	public static void main (String[] args){\r\n" +
+        		"		System.out.println(\"Hello World\");\r\n" +
+        		"		int x=5;\r\n" +
+        		"		String hi=\"Idk\";\r\n" +
+        		"		while(x>0){\r\n" +
+        		"			System.out.println(hi);\r\n" +
+        		"			x--;\r\n" +
+        		"		}\r\n" +
+        		"	}\r\n" +
+        		" }\r\n" +
+        		"", 15, 40);
+                } catch (Exception evt) {
+                }
+            }
+        });
+
 
         //Adds panels to the frame and shows the program
         frame.setLayout(new GridBagLayout());
