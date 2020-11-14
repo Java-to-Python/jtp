@@ -57,17 +57,17 @@ class gui {
 
         //Creating the MenuBar and adding components
         JMenuBar menuBar = new JMenuBar();
-        JMenu menu1 = new JMenu("FILE");
+        JMenu menu1 = new JMenu("File");
         JMenu menu2 = new JMenu("Help");
-        JMenu menu3 = new JMenu("Example");
+        JMenu menu3 = new JMenu("Examples");
         menuBar.add(menu1);
         menuBar.add(menu2);
         menuBar.add(menu3);
 
-        JMenuItem menu4 = new JMenuItem("Hello World");
+        JMenuItem menu4 = new JMenuItem("Hello world");
         JMenuItem menu5 = new JMenuItem("Variables");
         JMenuItem menu6 = new JMenuItem("While loop");
-        JMenuItem menu7 = new JMenuItem("For Each");
+        JMenuItem menu7 = new JMenuItem("For-each");
         JMenuItem menu8 = new JMenuItem("If");
 
         menu3.add(menu4);
@@ -88,18 +88,7 @@ class gui {
         JButton translatorButton = new JButton("Translate");
 
         //JButton runButton = new JButton("Run");
-        JTextArea textArea = new JTextArea("public class MyClass{ 				\r\n" +
-        		"	public static void main (String[] args){\r\n" +
-        		"		System.out.println(\"Hello World\");\r\n" +
-        		"		int x=5;\r\n" +
-        		"		String hi=\"Idk\";\r\n" +
-        		"		while(x>0){\r\n" +
-        		"			System.out.println(hi);\r\n" +
-        		"			x--;\r\n" +
-        		"		}\r\n" +
-        		"	}\r\n" +
-        		" }\r\n" +
-        		"", 15, 40);
+        JTextArea textArea = new JTextArea("", 15, 40);
         JTextArea textArea2 = new JTextArea("", 15, 40);
         JScrollPane textScrollPane = new JScrollPane(textArea);
         JScrollPane textScrollPane2 = new JScrollPane(textArea2);
@@ -121,6 +110,10 @@ class gui {
         //Translate Button Function
         translatorButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	
+            	if(textArea.getText().isBlank() || textArea.getText().isEmpty()) {
+            		return;
+            	}
             	textArea2.setText("");
             	textArea.validate();
             	String text=(Java_To_Python_Translator.translate(textArea.getText()));
@@ -226,7 +219,7 @@ class gui {
             public void actionPerformed(ActionEvent e) {
 
                 try {
-                    textArea.setText("public class Operators{\r\n" + 
+                    textArea.setText("public class Variables{\r\n" + 
                     		"    public static void main(String[] args){\r\n" + 
                     		"            Int a = 5;\r\n" + 
                     		"            Int b = 7;\r\n" + 
