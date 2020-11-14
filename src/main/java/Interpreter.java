@@ -6,11 +6,13 @@ public class Interpreter {
     public static boolean W = false;
     public static boolean I = false;
     public static boolean F = false;
+    public static boolean pri = false;
     public static int indent = 0;
     public static int position = -1;
     public static int currentLineNumber=1;
     public static ArrayList<ArrayList<String>> translate = new ArrayList<>();
     public static ArrayList <String> parsedTokens = new ArrayList<>();
+
     
     public static ArrayList<ArrayList<String>> Translate(ArrayList<Token> tokens) {
  
@@ -146,6 +148,7 @@ public class Interpreter {
                             break;
                         }
                         case "print":{
+                        	pri = true;
                         	parsedTokens.add("print(");
                         	translate.add(parsedTokens);
                             position++;
@@ -154,9 +157,11 @@ public class Interpreter {
                             }
                             parsedTokens.add(")");
                             translate.add(parsedTokens);
+                            pri = false;
                             break;
                         }
                         case "println": {
+                        	pri = true;
                         	parsedTokens.add("print(");
                         	translate.add(parsedTokens);
                             position++;
@@ -165,6 +170,7 @@ public class Interpreter {
                             }
                             parsedTokens.add(")");
                             translate.add(parsedTokens);
+                            pri = false;
                             break;
                         }
 
@@ -265,18 +271,28 @@ public class Interpreter {
                     break;
                 }
                 case Addition: {
-                	//System.out.println(" idk " + stringVariable);
-                	int placeHolder = position - 1;
-                	while(tokens.get(placeHolder).getType() != tokentype.SemiColon) {
-	                	if( (keywords.compare(tokens.get(placeHolder).getText(), keywords.Print) 
-	                			|| keywords.compare(tokens.get(placeHolder).getText(), keywords.PRINTLN) )) {
-	                		parsedTokens.add(",");
-	                        translate.add(parsedTokens);
-	                        break;
-	                	}
-	                	
-                		placeHolder--;
-                	}
+                	if (pri) 
+                    {
+                        int placeHolder = position - 1;
+                        while(tokens.get(placeHolder).getType() != tokentype.SemiColon) 
+                        {
+                    if( (keywords.compare(tokens.get(placeHolder).getText(), keywords.Print) 
+                            || keywords.compare(tokens.get(placeHolder).getText(), keywords.PRINTLN) )) 
+                            {
+                        parsedTokens.add(",");
+                                    translate.add(parsedTokens);
+                        break;
+                    }
+
+                    placeHolder--;
+                        }
+                    }
+                    else
+                    {
+                        parsedTokens.add("+");
+                    translate.add(parsedTokens);
+                        break;
+                    }
 //                	if(tokens.get(position-1).getType()==tokentype.String ||tokens.get(position-2).getType()==tokentype.String || (tokens.get(position-2).getType()==tokentype.Word || (tokens.get(position-1).getType()==tokentype.Word ))) 
 //                    {
 //                        parsedTokens.add(" , ");

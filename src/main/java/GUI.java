@@ -57,20 +57,24 @@ class gui {
 
         //Creating the MenuBar and adding components
         JMenuBar menuBar = new JMenuBar();
-        JMenu menu1 = new JMenu("FILE");
+        JMenu menu1 = new JMenu("File");
         JMenu menu2 = new JMenu("Help");
-        JMenu menu3 = new JMenu("Example");
+        JMenu menu3 = new JMenu("Examples");
         menuBar.add(menu1);
         menuBar.add(menu2);
         menuBar.add(menu3);
 
-        JMenuItem menu4 = new JMenuItem("String");
-        JMenuItem menu5 = new JMenuItem("For loop");
-        JMenuItem menu6 = new JMenuItem("If");
+        JMenuItem menu4 = new JMenuItem("Hello world");
+        JMenuItem menu5 = new JMenuItem("Variables");
+        JMenuItem menu6 = new JMenuItem("While loop");
+        JMenuItem menu7 = new JMenuItem("For-each");
+        JMenuItem menu8 = new JMenuItem("If");
 
         menu3.add(menu4);
         menu3.add(menu5);
         menu3.add(menu6);
+        menu3.add(menu7);
+        menu3.add(menu8);
 
         JMenuItem menu11 = new JMenuItem("Open");
         JMenuItem menu22 = new JMenuItem("Save as");
@@ -84,18 +88,7 @@ class gui {
         JButton translatorButton = new JButton("Translate");
 
         //JButton runButton = new JButton("Run");
-        JTextArea textArea = new JTextArea("public class MyClass{ 				\r\n" +
-        		"	public static void main (String[] args){\r\n" +
-        		"		System.out.println(\"Hello World\");\r\n" +
-        		"		int x=5;\r\n" +
-        		"		String hi=\"Idk\";\r\n" +
-        		"		while(x>0){\r\n" +
-        		"			System.out.println(hi);\r\n" +
-        		"			x--;\r\n" +
-        		"		}\r\n" +
-        		"	}\r\n" +
-        		" }\r\n" +
-        		"", 15, 40);
+        JTextArea textArea = new JTextArea("", 15, 40);
         JTextArea textArea2 = new JTextArea("", 15, 40);
         JScrollPane textScrollPane = new JScrollPane(textArea);
         JScrollPane textScrollPane2 = new JScrollPane(textArea2);
@@ -117,6 +110,10 @@ class gui {
         //Translate Button Function
         translatorButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	
+            	if(textArea.getText().isBlank() || textArea.getText().isEmpty()) {
+            		return;
+            	}
             	textArea2.setText("");
             	textArea.validate();
             	String text=(Java_To_Python_Translator.translate(textArea.getText()));
@@ -201,59 +198,100 @@ class gui {
             }
         });
 
+        //Hello World example
         menu4.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
                 try {
-                    textArea.setText("public class MyClass{ 				\r\n" +
-        		"	public static void main (String[] args){\r\n" +
-        		"		String hi=\"Idk\";\r\n" +
-        		"		}\r\n" +
-        		"	}\r\n" +
-        		" }\r\n" +
-        		"");
+                    textArea.setText("public class Hello{\r\n" + 
+                    		"	public static void main(String[] args){\r\n" + 
+                    		"        	System.out.println(\"Hello World\");\r\n" + 
+                    		"	}\r\n" + 
+                    		"}\r\n" + 
+                    		"");
                 } catch (Exception evt) {
                 }
             }
         });
 
+        //Variables example
         menu5.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
                 try {
-                    JTextArea textArea = new JTextArea("public class MyClass{ 				\r\n" +
-        		"	public static void main (String[] args){\r\n" +
-        		"		System.out.println(\"Hello World\");\r\n" +
-        		"		int x=5;\r\n" +
-        		"		String hi=\"Idk\";\r\n" +
-        		"		while(x>0){\r\n" +
-        		"			System.out.println(hi);\r\n" +
-        		"			x--;\r\n" +
-        		"		}\r\n" +
-        		"	}\r\n" +
-        		" }\r\n" +
-        		"", 15, 40);
+                    textArea.setText("public class Variables{\r\n" + 
+                    		"    public static void main(String[] args){\r\n" + 
+                    		"            Int a = 5;\r\n" + 
+                    		"            Int b = 7;\r\n" + 
+                    		"            Int sum = b + a;\r\n" + 
+                    		"            System.out.println(\"The sum of \" + a +\" & \" +  b + \" is equal to: \" + sum);\r\n" + 
+                    		"    }\r\n" + 
+                    		"}\r\n" + 
+                    		"");
                 } catch (Exception evt) {
                 }
             }
         });
 
+        //While loop example
         menu6.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
                 try {
-                    JTextArea textArea = new JTextArea("public class MyClass{ 				\r\n" +
-        		"	public static void main (String[] args){\r\n" +
-        		"		System.out.println(\"Hello World\");\r\n" +
-        		"		int x=5;\r\n" +
-        		"		String hi=\"Idk\";\r\n" +
-        		"		while(x>0){\r\n" +
-        		"			System.out.println(hi);\r\n" +
-        		"			x--;\r\n" +
-        		"		}\r\n" +
-        		"	}\r\n" +
-        		" }\r\n" +
-        		"", 15, 40);
+                    textArea.setText("public class MyClass{ 				\r\n" + 
+                    		"	public static void main (String[] args){\r\n" + 
+                    		"		System.out.println(\"Hello World\");\r\n" + 
+                    		"		int x=5;\r\n" + 
+                    		"		String Hi=\"Idk\";\r\n" + 
+                    		"		while(x>0){\r\n" + 
+                    		"			System.out.println(Hi);\r\n" + 
+                    		"			x--;\r\n" + 
+                    		"		}\r\n" + 
+                    		"	}\r\n" + 
+                    		" }\r\n" + 
+                    		"");
+                } catch (Exception evt) {
+                }
+            }
+        });
+        
+        //For-each loop example
+        menu7.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                try {
+                    textArea.setText("public class Loop{ 				\r\n" + 
+                    		"	public static void main (String[] args){\r\n" + 
+                    		"		String[] cars = {\"Volvo\", \"BMW\", \"Ford\", \"Mazda\"};\r\n" + 
+                    		"		for (String i : cars) {\r\n" + 
+                    		"			System.out.println(i);\r\n" + 
+                    		"		}		\r\n" + 
+                    		"	}\r\n" + 
+                    		" }\r\n" + 
+                    		"");
+                } catch (Exception evt) {
+                }
+            }
+        });
+        
+      //For-each loop example
+        menu8.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                try {
+                    textArea.setText("public class Condition{                 \r\n" + 
+                    		"    public static void main (String[] args){\r\n" + 
+                    		"        float randomNum = 45.9;\r\n" + 
+                    		"        char letter = 'W';\r\n" + 
+                    		"        if (randomNum == letter){\r\n" + 
+                    		"            System.out.println(\"Incorrect\");\r\n" + 
+                    		"        } \r\n" + 
+                    		"       else {\r\n" + 
+                    		"            System.out.println(\"Good Job!\");\r\n" + 
+                    		"        }\r\n" + 
+                    		"    }\r\n" + 
+                    		" }\r\n" + 
+                    		"");
                 } catch (Exception evt) {
                 }
             }
