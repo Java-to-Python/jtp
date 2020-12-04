@@ -21,15 +21,11 @@ public class Java_To_Python_Translator {
         	tokens.add(token);
         	
         	//Grab the index of token containing the main class's name
-        	if((token.getText().contains("class") && (tokens.get(index - 2).getText().contains("public"))))
+        	if((token.getText().contains("class") && (mainClassIndex != -1)))
         	{
         		mainClassIndex=index + 2; 
         	}
         	
-        	//Exit the loop when the last token is assigned
-//			if(token.getType()==tokentype.End){
-//				break;			
-//			}
         }
         
         //View input
